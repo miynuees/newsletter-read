@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e8d7c3">
+<meta name="robots" content="noindex, nofollow">
+<title>뉴스레터 읽어보기</title>
+<style>
+:root{
+  --paper:#fdfaf3; --paper-deep:#f6ecd9; --terracotta:#c97b5a; --terracotta-deep:#b3644a;
+  --sage-deep:#729471; --ink:#4a3f38; --sub:#9a8b7c;
+  --card:#fffefb; --line:#ece1cf;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{margin:0; padding:0;}
+body{
+  font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+  background:
+    radial-gradient(circle at 8% 10%, rgba(201,123,90,.07), transparent 42%),
+    radial-gradient(circle at 92% 88%, rgba(143,174,139,.09), transparent 45%),
+    var(--paper);
+  color:var(--ink); min-height:100vh;
+}
+
+main{max-width:520px; margin:0 auto; padding:56px 22px 80px;}
+
+h1{
+  font-size:25px; font-weight:800; letter-spacing:-.4px; color:var(--terracotta-deep);
+  margin:0 0 44px; text-align:center;
+}
+
+.group{margin-bottom:38px;}
+.group-mark{
+  display:flex; align-items:center; gap:12px; margin-bottom:14px;
+}
+.letter{
+  width:34px; height:34px; border-radius:11px; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-size:16px; font-weight:800; color:#fff;
+}
+.letter.a{background:var(--terracotta);}
+.letter.b{background:var(--sage-deep);}
+.rule{flex:1; height:1px; background:var(--line);}
+
+.link{
+  display:flex; align-items:center; gap:12px;
+  background:var(--card); border:1px solid var(--line); border-radius:14px;
+  padding:19px 20px; margin-bottom:10px;
+  font-size:16.5px; font-weight:700; color:var(--ink); text-decoration:none;
+  transition:.14s;
+}
+.link:hover{border-color:var(--terracotta); transform:translateY(-1px); box-shadow:0 8px 20px rgba(150,120,90,.1);}
+.link .arrow{margin-left:auto; flex:none; color:var(--sub); font-size:15px; font-weight:800;}
+.link:hover .arrow{color:var(--terracotta);}
+
+@media (max-width:430px){
+  main{padding:40px 18px 60px;}
+  h1{font-size:22px; margin-bottom:34px;}
+  .link{font-size:15.5px; padding:17px 17px;}
+}
+</style>
+</head>
+<body>
+
+<main>
+  <h1>뉴스레터 읽어보기</h1>
+
+  <div class="group">
+    <div class="group-mark"><span class="letter a">A</span><span class="rule"></span></div>
+    <div id="listA"></div>
+  </div>
+
+  <div class="group">
+    <div class="group-mark"><span class="letter b">B</span><span class="rule"></span></div>
+    <div id="listB"></div>
+  </div>
+</main>
+
+<script>
+/* 링크만 고치면 됩니다. A = 친근한 뉴스레터 / B = 비교해볼 레터 */
+
+const A = [
+  { name: '뉴닉',   url: 'https://stibee.com/api/v1.0/emails/share/hyAA7ANxlnwlxKcOzgj6VK4jz1otnuU' },
+  { name: '아트아트', url: 'https://www.artart.today/artletter/?q=YToyOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjtzOjQ6InBhZ2UiO2k6MTQ7fQ%3D%3D&bmode=view&idx=162556804&t=board' },
+  { name: '우시사',  url: 'https://stibee.com/api/v1.0/emails/share/nS4qtDfRhl1ZsTNiPrlYxESR-vhKbd0' },
+  { name: '어피티',  url: 'https://uppity.co.kr/%f0%9f%92%b0%ec%95%a0%ed%94%8c-ceo-%ea%b8%b0%ec%a1%b4-%ed%8f%b4%eb%8d%94%eb%b8%94%ed%8f%b0%ec%9d%80-%ed%8f%b0-%eb%91%90%ea%b0%9c-%eb%b6%99%ec%97%ac%eb%86%93%ec%9d%80-%eb%93%af-%ec%96%b4%ec%83%89/' }
+];
+
+const B = [
+  { name: '국립현대미술관 뉴스레터', url: 'https://www.mmca.go.kr/artResearch/newsLetterInfo.do?nlId=202609110001469' },
+  { name: '월간미술 M.A.P',       url: 'https://monthlyart.stibee.com/p/12' },
+  { name: '국가데이터처 보도자료',   url: 'https://kostat.go.kr/board.es?mid=a10301010000&bid=203' }
+];
+
+const rows = (list) => list.map(n =>
+  `<a class="link" href="${n.url}" target="_blank" rel="noopener">${n.name}<span class="arrow">→</span></a>`
+).join('');
+
+document.getElementById('listA').innerHTML = rows(A);
+document.getElementById('listB').innerHTML = rows(B);
+</script>
+</body>
+</html>
